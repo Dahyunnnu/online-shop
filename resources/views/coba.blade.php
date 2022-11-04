@@ -5,3 +5,5 @@ Halo
 <br>
 
 Dengan Blade Halo {{ $nama }}
+
+tes
