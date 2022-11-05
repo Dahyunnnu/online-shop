@@ -8,26 +8,35 @@
   </head>
   <body>
     <div class="container mt-5 ">
-    <form method="POST" action="{{ route('login.post')}}">
+    <form method="POST" action="{{ route('register.post')}}">
         @csrf
+        <div class="mb-3">
+          <label for="name" class="form-label">Nama Lengkap</label>
+          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" aria-describedby="nameHelp">
+          @error('name')
+            <div class="form-text text danger">{{ $message}}</div>
+          @enderror
+        </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
           <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp">
-          @error('email')
         </div>
-        <div class="form-text text danger">{{ $message}}</div>
-
+        @error('email')
+            <div class="form-text text danger">{{ $message }}</div>
         @enderror
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
         </div>
+        @error('password')
+            <div class="form-text text danger">{{ $message }}</div>
+        @enderror
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('register')}}" class="btn btn-primary">Register</a>
+        <a href="{{ route('login')}}" class="btn btn-secondary">Login</a>
       </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,12 +34,31 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Ikeh',
         ])->onlyInput('email');
     }
     public function logout()
     {
         Auth::logout();
         return redirect('/');
+
+    }
+    public function register()
+    {
+        return view('register');
+    }
+    public function registerpost(Request $request)
+    {
+        $request->validate([
+            'name'=> 'required',
+            'email'=> 'required|email|unique:users',
+            'password'=> 'required|min:6',
+        ]);
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $input['level'] = 'user';
+        $user = User::create($input);
+        return redirect('/login');
     }
 }
+

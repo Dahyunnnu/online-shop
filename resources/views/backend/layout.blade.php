@@ -21,7 +21,7 @@
             <a class="nav-link active" href="{{ route('category.index')}}">Category</a>
           </li>
         </ul>
-        <a href="{{ route('logout', [])}}" class="btn btn-outline-success">Logout</a>
+        <a href="{{ route('logout', [])}}" class="btn btn-outline-success" onclick="return confirm('Kamu Yakin Kamu Ingin Keluar Apa Enggak?')">Logout</a>
       </div>
     </div>
   </nav>
