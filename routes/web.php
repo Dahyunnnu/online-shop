@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +50,12 @@ Route::delete('/admin/category/{id}', [CategoryController::class,'delete'])->nam
 Route::get('/admin/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 
 Route::put('/admin/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+
+Route::get('/dashboard', function (){
+    return view('dashboard');
+});
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
